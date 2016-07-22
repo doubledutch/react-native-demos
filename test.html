@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <style>
+        body {
+            font-family: Helvetica, sans-serif;
+            font-size: 12pt;
+            background-color: #EFEFEF !important;
+        }
+
+        .container {
+            padding-top: 25px;
+        }
+
+        #sso input {
+            height: 45px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #sso button {
+            background-color: #2AA4CD;
+            
+            height: 45px;
+            width: 100%;
+            display: block;
+            text-transform: none;
+
+            font-size: 12pt;
+            font-weight: normal;
+        }
+
+        #sso button[disabled] {
+            background-color: #888 !important;
+        }
+
+    </style>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="//cdn.rawgit.com/doubledutch/sdk/master/DDEventsSDK.js"></script>
+</head>
+<body id="sso">
+    <div id="entercode" class="container">
+        <div>The Event Code allows you to find events and was provided by your event organizer.</div>
+        <div style="position:relative; padding: 10px 10x; margin-top: 10px;">
+            <input id="eventcode" type="text" placeholder="Event Code..." />
+            <button disabled="disabled" id="findevent" class="btn btn-large btn-primary" type="submit">Find Event</button>
+        </div>
+    </div>
+    <div id="eventlogin" class="container" style="display:none">
+        <div style="text-align: center">
+            <img id="eventimage" src="http://doubledutch.me/wp-content/uploads/2016/04/doubledutch-logo-300.png" style="height: 75px; border-radius: 38px;" />
+            <h3 class="eventname">...</h3>
+        </div>
+        <div id="loginmessage" style="color: #888; font-style: italic">...</div>
+        <div style="position:relative; padding: 10px 0;">
+            <div id="confirmationmode">
+                <input id="confirmationid" type="text" placeholder="Confirmation ID" />
+            </div>
+            <div id="usernamemode">
+                <input id="username" type="text" placeholder="Username" />
+                <input id="password" type="password" placeholder="Password" />
+            </div>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <a id="registerurl" href="#">Event Website</a>
+            </div>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <a id="forgotpassword" href="#">Forgot?</a>
+            </div>
+            <button disabled="disabled" id="login" class="btn btn-large btn-primary" type="submit">Login</button>
+        </div>
+    </div>
+    <div id="eventadded" class="container" style="display:none">
+        <div>The event <span class="eventname" style="font-weight:bold"></span> has been added to your event list. You may now return to your event list by clicking the back button.</div>
+    </div>
+    <script>
+        // Event code events
+        DD.Events.onReady(function () {
+            DD.Events.getSignedAPIAsync('users/me', null, function (signedUrl, accessToken) {
+              alert(accessToken);
+            })
+        });
+    </script>
+</body>
+</html>
