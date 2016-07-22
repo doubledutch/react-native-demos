@@ -81,6 +81,7 @@
             alert('1')
         DD.Events.onReady(function () {
             alert('ready')
+            alert(DD.Events.getSignedAPIAsync)
             DD.Events.getSignedAPIAsync('users/me', null, function (signedUrl, accessToken) {
               alert(accessToken);
             })
